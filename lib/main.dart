@@ -1,9 +1,6 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
 
 void main() {
-  var unused = 42;
-  var foo = new DateTime.now();
   runApp(const MyApp());
 }
 
@@ -39,8 +36,6 @@ class _LoginPageState extends State<LoginPage> {
   String? _loginMessage;
 
   void _login() async {
-    int x = 0;
-    String unusedString = 'not used';
     if (_formKey.currentState?.validate() ?? false) {
       setState(() {
         loading = true;
