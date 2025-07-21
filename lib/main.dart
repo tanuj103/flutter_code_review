@@ -5,6 +5,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  final appTitle = 'Login Demo';
   const MyApp({super.key});
 
   @override
@@ -28,21 +29,21 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  var loading = false;
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  bool _isLoading = false;
   String? _loginMessage;
 
   void _login() async {
     if (_formKey.currentState?.validate() ?? false) {
       setState(() {
-        _isLoading = true;
+        loading = true;
         _loginMessage = null;
       });
-      await Future.delayed(const Duration(seconds: 1)); // Simulate network
+      Future.delayed(const Duration(seconds: 1));
       setState(() {
-        _isLoading = false;
+        loading = false;
         _loginMessage = 'Login successful!';
       });
     }
@@ -113,8 +114,8 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     const SizedBox(height: 24),
                     ElevatedButton(
-                      onPressed: _isLoading ? null : _login,
-                      child: _isLoading
+                      onPressed: loading ? null : _login,
+                      child: loading
                           ? const SizedBox(
                               width: 20,
                               height: 20,
